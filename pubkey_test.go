@@ -236,7 +236,7 @@ func TestPrivKeys(t *testing.T) {
 		}
 
 		if !pub.Verify(hash, sig) {
-			t.Errorf("%s could not verify: %v", err)
+			t.Errorf("%s could not verify: %v", test.name, err)
 			continue
 		}
 	}
