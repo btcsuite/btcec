@@ -149,6 +149,12 @@ func (p *PublicKey) SerializeHybrid() []byte {
 	return b
 }
 
+// Verify calls ecdsa.Verify to verify the signature of hash using the public key.
+// Its return value records whether the signature is valid.
+func (p *PublicKey) Verify(hash []byte, sig *Signature) bool {
+	return ecdsa.Verify(p.ToECDSA(), hash, sig.R, sig.S)
+}
+
 func pad(size int, b []byte) []byte {
 	// Prevent a possible panic if the input exceeds the expected size.
 	if len(b) > size {
